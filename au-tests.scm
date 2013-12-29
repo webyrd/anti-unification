@@ -109,3 +109,18 @@
         (z_1 (var (genny #\z 1))))
     `(lambda (,z_0) ,z_1)))
 
+(test "au-10"
+  (let ((x (var 'x))
+        (y (var 'y)))
+    (let ((t1 `(lambda (,x) ,x))
+          (t2 `(lambda (,y) ,y)))
+      (au (list t1 t2))))
+  (let ((z_0 (var (genny #\z 0))))
+    `(lambda (,z_0) ,z_0)))
+
+(let ((x (var 'x)))
+  (test "au-11"
+    (let ((t1 `(lambda (,x) ,x))
+          (t2 `(lambda (,x) ,x)))
+      (au (list t1 t2)))
+    `(lambda (,x) ,x)))
